@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>You're Invited, My Love 💕</title>
+  <style>
+    body {
+      background-color: #fff0f5;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 50px;
+      color: #c71585;
+    }
+
+    .card {
+      background-color: #ffe6f0;
+      border: 2px dashed #ff69b4;
+      border-radius: 20px;
+      padding: 40px;
+      display: inline-block;
+      box-shadow: 0 8px 16px rgba(255, 105, 180, 0.3);
+      max-width: 500px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #ff1493;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.3em;
+      margin: 15px 0;
+    }
+
+    .heart {
+      font-size: 2em;
+      color: #ff69b4;
+      margin: 20px 0;
+      animation: bounce 1.2s infinite;
+    }
+
+    .button {
+      background-color: #ff69b4;
+      color: white;
+      padding: 12px 25px;
+      font-size: 1em;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s;
+      margin: 0 10px;
+      position: relative;
+    }
+
+    .button:hover {
+      background-color: #ff1493;
+    }
+
+    #no-btn {
+      position: relative;
+      background-color: #ccc;
+      color: #666;
+    }
+
+    #no-btn:hover {
+      background-color: #aaa;
+    }
+
+    @keyframes bounce {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Invitation Card 💖 </h1>
+    <p>Hai Afifahku Sayang,</p>
+    <p>Sudikah awak keluar celebrate birthday dengan kita? 🎀</p>
+    <p>Just kita berdua jee 💑</p>
+    <div class="heart">💓 💓 💓</div>
+ <a class="button" href="select-date.html" id="yes-btn">NAKKKK</a>
+    <button class="button" id="no-btn">TAKNAK AHH</button>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('no-btn');
+
+    noBtn.addEventListener('mousemove', (e) => {
+      const card = noBtn.parentElement;
+      const cardRect = card.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+
+      // Calculate new position for the "No" button to move away from cursor
+      const offset = 100; // pixels to move away
+      let newLeft = e.clientX - cardRect.left + offset;
+      let newTop = e.clientY - cardRect.top + offset;
+
+      // Keep button inside the card boundaries
+      if (newLeft + btnRect.width > cardRect.width) {
+        newLeft = e.clientX - cardRect.left - btnRect.width - offset;
+      }
+      if (newTop + btnRect.height > cardRect.height) {
+        newTop = e.clientY - cardRect.top - btnRect.height - offset;
+      }
+
+      noBtn.style.position = 'absolute';
+      noBtn.style.left = `${newLeft}px`;
+      noBtn.style.top = `${newTop}px`;
+    });
+
+    // Reset position on mouse leaving card area so "No" doesn't get stuck away
+    noBtn.parentElement.addEventListener('mouseleave', () => {
+      noBtn.style.position = 'relative';
+      noBtn.style.left = '0';
+      noBtn.style.top = '0';
+    });
+  </script>
+</body>
+</html>
